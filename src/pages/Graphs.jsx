@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-export function Products() {
+export function Graphs() {
   return (
     <Container>
-      <h1>Products</h1>
+      <h1>Graphs</h1>
     </Container>
   )
 }

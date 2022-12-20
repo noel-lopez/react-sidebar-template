@@ -14,10 +14,6 @@ function App() {
     ? Light
     : Dark
 
-  const swapTheme = () => {
-    setTheme((theme) => (theme==='light'?'dark':'light'))
-  }
-
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
@@ -40,6 +36,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 90px auto;
   background: ${({theme}) => theme.bgtotal};
+  color: ${({theme}) => theme.text};
   transition: all 0.3s;
   &.active {
     grid-template-columns: 300px auto;
