@@ -18,15 +18,18 @@ function App() {
     setTheme((theme) => (theme==='light'?'dark':'light'))
   }
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <>
       <ThemeContext.Provider value={{setTheme, theme}}>
         <ThemeProvider theme={themeStyle} >
           <BrowserRouter>
             <Container>
-              <input type="checkbox" onClick={swapTheme}></input>
-              <Sidebar />
-              <MyRoutes />
+              <main className={sidebarOpen?'sidebarState active':'sidebarState'}>
+                <Sidebar />
+                <MyRoutes />
+              </main>
             </Container>
           </BrowserRouter>
         </ThemeProvider>
@@ -36,8 +39,14 @@ function App() {
 }
 
 const Container = styled.div`
-  background-color: ${({theme}) => theme.body};
-  color: ${({theme}) => theme.text}
+  .sidebarState {
+    display: grid;
+    grid-template-columns: 90px auto;
+    background: ${({theme}) => theme.bgtotal};
+    &.active {
+      grid-template-columns: 300px auto;
+    }
+  }
 `
 
 export default App
