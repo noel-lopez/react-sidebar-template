@@ -18,18 +18,16 @@ function App() {
     setTheme((theme) => (theme==='light'?'dark':'light'))
   }
 
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
     <>
       <ThemeContext.Provider value={{setTheme, theme}}>
         <ThemeProvider theme={themeStyle} >
           <BrowserRouter>
-            <Container>
-              <main className={sidebarOpen?'sidebarState active':'sidebarState'}>
-                <Sidebar />
+            <Container className={sidebarOpen ? 'active':''}>
+                <Sidebar open={sidebarOpen} setOpen={setSidebarOpen}/>
                 <MyRoutes />
-              </main>
             </Container>
           </BrowserRouter>
         </ThemeProvider>
@@ -39,13 +37,11 @@ function App() {
 }
 
 const Container = styled.div`
-  .sidebarState {
-    display: grid;
-    grid-template-columns: 90px auto;
-    background: ${({theme}) => theme.bgtotal};
-    &.active {
-      grid-template-columns: 300px auto;
-    }
+  display: grid;
+  grid-template-columns: 90px auto;
+  background: ${({theme}) => theme.bgtotal};
+  &.active {
+    grid-template-columns: 300px auto;
   }
 `
 
